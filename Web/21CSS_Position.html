@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+      /*  div {
+            border: 1px solid;
+          
+        }*/
+        #container {
+            width: 770px;
+            margin:auto;
+            position:relative;
+        }
+        #top{
+            /*height:150px;*/
+            background-color:yellow;
+        }
+        #left {
+            /*height: 700px;*/
+            /*width: 300px;*/
+            float: left;
+            background-color:aqua;
+        }
+        #right {
+            /*height: 700px;*/
+            /*width: 900px;*/
+            float: right;
+            background-color:blueviolet;
+        }
+        #bottom {
+            /*height: 100px;*/
+            clear: both;
+            background-color:darkcyan;
+        }
+        #ad3{
+            position:absolute;
+            top:20px;
+            left:124px;
+        }
+        #close {
+            position: absolute;
+            top: 20px;
+            left: 124px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="top">
+            <img src="images/切版素材/top.jpg" />
+        </div>
+        <div id="left">
+            <img src="images/切版素材/left.jpg" />
+        </div>
+        <div id="right">
+            <img src="images/切版素材/right.jpg" />
+        </div>
+        <div id="bottom">
+            <img src="images/切版素材/bottom.jpg" />
+        </div>
+        <img src="images/切版素材/ad.jpg" id="ad3"/>
+        <button id="close" onclick="CloseAD()">x</button>
+    </div>
+</body>
+</html>
+<script>
+    function CloseAD() {
+        const ad = document.getElementById('ad3');
+        console.log(ad);
+        console.log("close");
+        ad.style.display = "none";
+        document.getElementById('close').style.display = "none";
+        
+    }
+</script>
