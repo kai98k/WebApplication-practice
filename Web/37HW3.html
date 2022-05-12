@@ -9,6 +9,7 @@
             width:700px; height:400px;
             margin:auto;
             text-align:center;
+            cursor:pointer;
         }
         #ControlPanel > span {
             border: 2px solid;
@@ -17,13 +18,86 @@
             cursor: pointer;
             font-family: Webdings;
             font-size: 3rem;
+            border-radius:50%;
         }
+        #song, #info {
+            width: inherit;
+            font-size: 2rem;
+            background-color: black;
+            color: chartreuse;
+            text-align: center;
+        }
+
+        .btnVol {
+            border-radius: 50%;
+            border:1px groove white;
+            box-shadow:0px 0px 1px gray;
+        }
+
+        #volValue {
+            width: 80%;
+            height: 8px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            border: 3px solid #808080;
+            background-color: #c8c8c8;
+            outline: none;
+        }
+            #volValue::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: 35px;
+                height:25px;
+                background-color: #4a4848;
+                border: 3px groove white;
+            }
+            #volValue::-moz-range-thumb {
+                -moz-appearance: none;
+                width: 35px;
+                height: 25px;
+                background-color: #4a4848;
+                border: 3px groove white;
+            }
+
+         
+        #volInfo {
+            width: 22px;
+            text-align: center;
+            background-color: black;
+            color: yellow;
+        }
+
+
+
+        #progress {
+            width: inherit;
+            height: 5px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            margin-bottom: 10px;
+            background-color: #c8c8c8;
+            outline: none;
+        }
+
+            #progress::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: 10px;
+                height: 5px;
+                background-color: #b60000;
+                cursor: pointer;
+                transition: .5s;
+            }
+
+                #progress::-webkit-slider-thumb:hover {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                }
     </style>
 </head>
 <body>
 
     <div id="ControlPanel">
-        <select id="Select1" onchange="chagneMusic(event)">
+        <select id="song">
             <option value="music/elysees.mp3">Champs-Elyees</option>
             <option value="music/airball.mp3">告白汽球</option>
             <option value="music/travel.mp3">帶你去旅行</option>
@@ -39,9 +113,11 @@
         <span onclick="changeSong(1)">:</span>
 
         <hr />
-        <input id="volValue" type="range" max="100" min="0" value="100" oninput="setVolume()" />
-        <input id="Button1" type="button" value="-" onclick="changeVolume(-1)" />
-        <input id="Button2" type="button" value="+" onclick="changeVolume(1)" />
+        <input id="progress" type="range" value="0" oninput="setTimeBar()" />
+        <input id="volValue" type="range" max="100" min="0" value="80" oninput="setVolume()" />
+        <input id="Button1" class="btnVol" type="button" value="-" onclick="changeVolume(-1)" />
+        <input id="Button2" class="btnVol" type="button" value="+" onclick="changeVolume(1)" />
+        <input id="volInfo" type="text" readonly />
         <hr />
         <div id="info">
             <marquee>請按下播放鈕</marquee>
@@ -57,28 +133,36 @@
         var audio = document.getElementById("music");
         var btnPlay = document.getElementById("btnPlay");
         var volValue = document.getElementById("volValue");
+        var volInfo = document.getElementById("volInfo");
         var info = document.getElementById("info");
+        var song = document.getElementById("song");
+        var progress = document.getElementById("progress");
         console.log(audio.children[0].title);
 
-        function changeSong() {
+        song.addEventListener('change', function () {
+            chagneMusic(song.selectedIndex);
+        });
 
-       
+        function setTimeBar() {
+            audio.currentTime = progress.value;
+        }
+
+        //上一首下一首
+        function changeSong(i) {
+            var index = song.selectedIndex + i;
+            chagneMusic(index);
         }
 
 
         //歌曲切換
         var musicObj, musicIndex = 0;
-        function chagneMusic(evt) {
+        function chagneMusic(i) {
 
-            //console.log(evt.target.options[evt.target.selectedIndex].value);
-            musicObj = evt.target.options;
-            musicIndex = evt.target.selectedIndex;
-
-            audio.children[0].src = musicObj[musicIndex].value;
-            audio.children[0].title = musicObj[musicIndex].innerText;
+            song.options[i].selected = true;
+            audio.children[0].src = song.options[i].value;
+            audio.children[0].title = song.options[i].innerText;
             audio.load();
 
-   
             if (btnPlay.innerText == ";")
                 Play();
         }
@@ -97,6 +181,12 @@
 
         //取得歌曲播放時間
         function getDuration() {
+
+            progress.max = parseInt(audio.duration);
+            progress.value = parseInt(audio.currentTime);
+
+            var w = (audio.currentTime / audio.duration * 100) + "%";
+            progress.style.backgroundImage = "-webkit-linear-gradient(left,#b60000,#b60000 " + w + ", #c8c8c8 " + w + ",#c8c8c8)";
 
             info.children[1].innerText = getTimeFormat(audio.currentTime) + " / " + getTimeFormat(audio.duration);
 
@@ -123,6 +213,7 @@
 
         //停止播放功能
         function Stop() {
+           
             audio.pause();
             audio.currentTime = 0;
             btnPlay.innerText = "4";
@@ -145,9 +236,13 @@
             setVolume();
         }
         //音量調整
+        setVolume()
         function setVolume() {
+            volInfo.value = volValue.value;
+            audio.volume = volValue.value / 100;
 
-            audio.volume = volValue.value/100;
+            var z = volValue.value + "%";
+            volValue.style.backgroundImage = "-webkit-linear-gradient(left,#009d72,#009d72 " + z + ", #c8c8c8 " + z + ",#c8c8c8)";
         }
     </script>
 </body>
