@@ -7,5 +7,13 @@
 <body>
     git push
     git pull
+    <input type="file" id="file-id" onchange="filesrc()"/>
+<script>
+    
+    function filesrc() {
+        let file = document.getElementById("file-id").files[0].src;
+        console.log(file);
+    }
+</script>
 </body>
 </html>

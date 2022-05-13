@@ -6,7 +6,7 @@
     <style>
         #ControlPanel{
             border:3px solid;
-            width:700px; height:400px;
+            width:700px; height:320px;
             margin:auto;
             text-align:center;
             cursor:pointer;
@@ -92,26 +92,37 @@
                     height: 20px;
                     border-radius: 50%;
                 }
+        #book>div{
+            border:1px groove;
+            width:348px;height:200px;
+            float:left;
+        }
+
+        #book > div>div {
+            border: 1px groove;
+            background-color:burlywood;
+        }
     </style>
 </head>
 <body>
 
     <div id="ControlPanel">
         <select id="song">
-            <option value="music/elysees.mp3">Champs-Elyees</option>
-            <option value="music/airball.mp3">告白汽球</option>
-            <option value="music/travel.mp3">帶你去旅行</option>
+            
         </select>
 
         <hr />
         <span onclick="Play()" id="btnPlay" title="這是播放鈕">4</span>
         <span onclick="Stop()"><</span>
+        <span onclick="changeSong(-1)">9</span>
         <span onclick="changeTime(-5)">7</span>
         <span onclick="changeTime(5)">8</span>
-
-        <span onclick="changeSong(-1)">9</span>
         <span onclick="changeSong(1)">:</span>
-
+        <span onclick="setMuted()">V</span>
+        <span onclick="setLoop()">q</span>
+        <span onclick="setRandom()">s</span>
+        <span onclick="setAllLoop()">`</span>
+        <span>@</span>
         <hr />
         <input id="progress" type="range" value="0" oninput="setTimeBar()" />
         <input id="volValue" type="range" max="100" min="0" value="80" oninput="setVolume()" />
@@ -122,10 +133,23 @@
         <div id="info">
             <marquee>請按下播放鈕</marquee>
             <div>00:00 / 00:00</div>
+            <div>狀態</div>
+        </div>
+        <div id="book">
+            <div>
+                <div title="music/elysees.mp3">Champs-Elyees</div>
+                <div title="music/airball.mp3">告白汽球</div>
+                <div title="music/travel.mp3">帶你去旅行</div>
+                <div title="music/moon.mp3">私奔到月球</div>
+                <div title="music/nothing.mp3">Nothing Ganna Change My Love For You</div>
+            </div>
+            <div>
+
+            </div>
         </div>
     </div>
 
-    <audio id="music" controls="controls">
+    <audio id="music">
         <source src="music/elysees.mp3" type="audio/mpeg" title="Champs-Elyees" />
     </audio>
 
@@ -137,12 +161,52 @@
         var info = document.getElementById("info");
         var song = document.getElementById("song");
         var progress = document.getElementById("progress");
+        var book = document.getElementById("book");
         console.log(audio.children[0].title);
 
         song.addEventListener('change', function () {
             chagneMusic(song.selectedIndex);
         });
 
+        var sBook = book.children[0];
+        //console.log(sBook.children.length);
+        var option;
+        for (var i = 0; i < sBook.children.length; i++) {
+            option = document.createElement("option");//<option></option>
+            option.innerText = sBook.children[i].innerText;
+            option.value = sBook.children[i].title;
+            song.appendChild(option);
+        }
+
+        //全曲循環
+        function setAllLoop() {
+
+            info.children[2].innerText = info.children[2].innerText == "全曲循環" ? "狀態" : "全曲循環";
+
+
+        }
+
+        //隨機播放
+        function setRandom() {
+            info.children[2].innerText = info.children[2].innerText == "隨機播放" ? "狀態" : "隨機播放";
+          
+        }
+
+        //單曲循環
+        function setLoop() {
+           
+            info.children[2].innerText = info.children[2].innerText == "單曲循環" ? "狀態" : "單曲循環";
+     
+            //console.log(audio.loop);
+            
+        }
+
+        //設定靜音
+        function setMuted() {
+            audio.muted = !audio.muted;       
+        }
+
+        //時間軸
         function setTimeBar() {
             audio.currentTime = progress.value;
         }
@@ -150,6 +214,7 @@
         //上一首下一首
         function changeSong(i) {
             var index = song.selectedIndex + i;
+            console.log(index);
             chagneMusic(index);
         }
 
@@ -189,14 +254,33 @@
             progress.style.backgroundImage = "-webkit-linear-gradient(left,#b60000,#b60000 " + w + ", #c8c8c8 " + w + ",#c8c8c8)";
 
             info.children[1].innerText = getTimeFormat(audio.currentTime) + " / " + getTimeFormat(audio.duration);
+            setTimeout(getDuration, 10);
 
-            if (audio.currentTime < audio.duration)
-                setTimeout(getDuration,1000);
+            if (audio.currentTime == audio.duration) {
+                if (info.children[2].innerText == "隨機播放") {
+                    var n = Math.floor(Math.random() * song.options.length);
+                    chagneMusic(n);
+                }
+                else if (info.children[2].innerText == "全曲循環" && song.selectedIndex == song.options.length-1) {
+                  
+                    chagneMusic(0);
+                }
+                else if (info.children[2].innerText == "單曲循環") {
+                    //chagneMusic(song.selectedIndex);
+                    changeSong(0);
+                }
+                else if (song.selectedIndex == song.options.length - 1) {
+                    Stop();
+                }
+                else
+                    changeSong(1);
+            }
         }
        
 
         //播放與暫停功能
         function Play() {
+            //console.log(audio.loop);
             if (audio.paused) {
                 audio.play();
                 btnPlay.innerText = ";";
