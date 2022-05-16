@@ -120,6 +120,14 @@
     <Content Include="images\切版素材\left.jpg" />
     <Content Include="images\切版素材\right.jpg" />
     <Content Include="images\切版素材\top.jpg" />
+    <Content Include="MusicPlayer\37HW3.html" />
+    <Content Include="MusicPlayer\hw3.css" />
+    <Content Include="MusicPlayer\hw3.js" />
+    <Content Include="MusicPlayer\music\airball.mp3" />
+    <Content Include="MusicPlayer\music\elysees.mp3" />
+    <Content Include="MusicPlayer\music\moon.mp3" />
+    <Content Include="MusicPlayer\music\nothing.mp3" />
+    <Content Include="MusicPlayer\music\travel.mp3" />
     <Content Include="MyPage.html" />
     <Content Include="Web.config" />
   </ItemGroup>
