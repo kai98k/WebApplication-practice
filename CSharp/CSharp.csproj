@@ -93,6 +93,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HW2Controller.cs" />
+    <Compile Include="Controllers\HWController.cs" />
     <Compile Include="Controllers\_01VarController.cs" />
     <Compile Include="Controllers\_02StatementController.cs" />
     <Compile Include="Global.asax.cs">
@@ -113,6 +115,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\HW2\" />
+    <Folder Include="Views\HW\" />
     <Folder Include="Views\_01Var\" />
   </ItemGroup>
   <PropertyGroup>
