@@ -8,6 +8,10 @@ namespace CSharp.Controllers
 {
     public class HW1Controller : Controller
     {
+        public HW1Controller()
+        {
+            var abc = 123;
+        }
         // GET: HW1
         public string No3(int X,int Y)
         {
@@ -16,9 +20,9 @@ namespace CSharp.Controllers
             X = X - Y;
             return "X=" + Y+",Y="+X;
         }
-        public string No4(int S)
+        public string No4(int? S)
         {
-            int score = S / 10;
+            int score = (int)S / 10;
             switch(score)
             {
                 case 10:

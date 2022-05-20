@@ -9,4 +9,18 @@
 <a href="http://localhost:52796/HW1/No6?N=3">GO6</a>
 <a href="http://localhost:52796/HW1/No7?N=3">GO7</a>
 <a href="http://localhost:52796/HW1/No8">GO8</a>
+@*get*@ 
+<form action="http://localhost:52796/HW1/No4" method="post" id="form">
+    <input name="S"/>
+    <input type="submit" value="Submit" />
+    <a href="#" onclick="form.submit()">submit</a>
+</form> 
+<script type="text/javascript">
+    window.onload = function () {
+        const form = document.getElementById(form);
+        console.log(form);
+    }
+
+    
+</script>
 
