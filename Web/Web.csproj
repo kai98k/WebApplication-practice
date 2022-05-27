@@ -105,6 +105,15 @@
     <Content Include="37HW3.html" />
     <Content Include="git認識.html" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="hw\musicPlayer\audio2.html" />
+    <Content Include="hw\musicPlayer\music\airball.mp3" />
+    <Content Include="hw\musicPlayer\music\moon.mp3" />
+    <Content Include="hw\musicPlayer\music\nothing.mp3" />
+    <Content Include="hw\musicPlayer\music\假朋友真兄弟.mp3" />
+    <Content Include="hw\musicPlayer\music\搖啊搖.mp3" />
+    <Content Include="hw\musicPlayer\music\星球墜落.mp3" />
+    <Content Include="hw\musicPlayer\music\月亮代表我的心.mp3" />
+    <Content Include="hw\musicPlayer\music\痛苦造就了我們.mp3" />
     <Content Include="images\Chrysanthemum.jpg" />
     <Content Include="images\Desert.jpg" />
     <Content Include="images\Hydrangeas.jpg" />

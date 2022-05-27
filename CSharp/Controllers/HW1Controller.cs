@@ -18,7 +18,7 @@ namespace CSharp.Controllers
             X = X + Y; 
             Y = X - Y; 
             X = X - Y;
-            return "X=" + Y+",Y="+X;
+            return "X=" + X+",Y="+Y;
         }
         public string No4(int? S)
         {
