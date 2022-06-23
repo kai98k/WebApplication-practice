@@ -1,5 +1,5 @@
-﻿@model IEnumerable<_002View.Models.NightMarket>
-
+﻿@model IEnumerable<_002View.Models.NightMarket> 
+    @*抓模型的*@
 @{
     ViewBag.Title = "Index";
 }
@@ -12,21 +12,26 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            編號
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            夜市名稱
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            夜市地址
         </th>
-        <th></th>
+        <th>
+            圖片
+        </th>
+        <th>
+            看地圖
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Id)
+            @item.Id
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -35,9 +40,13 @@
             @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            <img src="~/images/@(item.Id).jpg" width="150"/>
+        </td>
+        <td>
+            <a href="https://www.google.com.tw/maps/place/@(item.Address)" target="_blank" class="btn btn-warning">點我看地圖</a>
+            @*@Html.ActionLink("編輯", "Edit", new { id=item.Id }) |*@
+            @Html.ActionLink("詳細資料", "Details", new { id=item.Id }) |
+            @*@Html.ActionLink("刪除", "Delete", new { id=item.Id })*@
         </td>
     </tr>
 }

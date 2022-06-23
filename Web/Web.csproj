@@ -103,8 +103,13 @@
     <Content Include="35JS_FlowControl_VarBlock.html" />
     <Content Include="36JS_FlowControl_function2.html" />
     <Content Include="37HW3.html" />
+    <Content Include="41jQuery_Animate.html" />
+    <Content Include="FrontEndHW4.html" />
+    <Content Include="39jQuery_DOM.html" />
+    <Content Include="40jQuery_API.html" />
     <Content Include="git認識.html" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="38jQuery.html" />
     <Content Include="hw\musicPlayer\audio2.html" />
     <Content Include="hw\musicPlayer\music\airball.mp3" />
     <Content Include="hw\musicPlayer\music\moon.mp3" />
@@ -138,6 +143,11 @@
     <Content Include="MusicPlayer\music\nothing.mp3" />
     <Content Include="MusicPlayer\music\travel.mp3" />
     <Content Include="MyPage.html" />
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +155,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

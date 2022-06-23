@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <style>
+        body, li, ul, h5, h4 {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+
+        h1 {
+            margin: 0;
+            text-align: center;
+            background: rgba(219,142,113,0.6);
+            padding: 5px 0;
+            border-radius: 8px;
+        }
+
+        .main {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+  
+
+        .card {
+            width:20%;
+            border-radius: 10px;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+            margin: 10px;
+            flex-wrap:wrap;
+        }
+
+            .card > img {
+                width: 280px;
+            }
+
+        .area {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+            .area h5 {
+                font-size: 16px;
+                padding: 5px
+            }
+
+            .area span {
+                padding: 5px;
+                font-size: 14px;
+            }
+
+        h4 {
+            font-size: 20px;
+        }
+
+        .text-wrap {
+            padding: 0px 10px;
+        }
+        #search{
+            width:250px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>全國農業旅遊休閒園區</h1>
+        <div class="d-flex align-items-center justify-content-center mt-3">
+            <label for="search" class="form-label m-3">查尋:</label>
+            <select type="text" id="search" onchange="Ajax(false)" class="form-select">
+                <option></option>
+            </select>
+        </div>
+        
+        <ul class="main"></ul>
+        <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                       
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let textCity = ""
+        let items = "";
+        let main = $(".main")
+        let info = [];
+        function SelectRender() {
+            Ajax(true)
+         
+        }
+        SelectRender();
+        function Ajax(isNew) {
+            let search = $('#search');
+            city = "";
+            console.log(isNew);
+            if (!isNew) {
+                city = search[0].value;
+            }
+            $.ajax({
+                type: 'get',
+                url: 'https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvAttractions.aspx?$filter=City+like+'+city,
+                success: (data) => {
+                    if (isNew) {
+                        let Cities = [];
+                        let str = "";
+                        data.forEach((item, index) => {
+                            Cities.push(item.City);
+                        })
+                        Cities = [...new Set(Cities)]
+                        console.log(Cities);
+                        Cities.forEach(item => {
+                            str += `<option value="${item}">${item}</option>`
+                        })
+                        console.log(str);
+                        search.html(str);
+                    }
+                    console.log(data);
+                    RenderList(data)
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        }
+
+        function TextOverflow() {
+            let texts = Array.from($(".text-wrap"));
+            texts.forEach((text) => {
+                let length = text.innerText.length
+                if (length > 50) {
+                    let str = text.innerText.substring(0, 50) + "...";
+                    text.innerText = str;
+                };
+            });
+            let search = $('#search');
+            console.log(search);
+        }
+        function RenderList(data) {
+            
+            items = "";
+            data.forEach((item, index, data) => {
+                if (item.Introduction == "") {
+                    item.Introduction = "尚無簡介";
+                }
+                items += `<li class="card pb-3"><img src="${item.Photo}" /><h4 class="mt-3">${item.Name}</h4><div class="area"><h5>${item.City}</h5><span>${item.Town}</span></div><p class="text-wrap">${item.Introduction}</p><button type="button" class="btn btn-success" onclick="openModal(${index})">查看更多</button>
+                        </li>`;
+            });
+            main.html(items);
+            TextOverflow();
+            info = [...data];
+        }
+        const myModal = new bootstrap.Modal('#Modal', {
+            keyboard: false
+        })
+        function openModal(i) {
+            let title = $('#ModalLabel');
+            let body = $('.modal-body');
+            info.forEach((item, index) => {
+                if (index == i) {
+                    title.html(`<h2>${item.Name}</h2`);
+                    body.html(`<p>${item.Introduction}</p><img src="${item.Photo}" class="img-fluid" />`);
+                }
+            })
+            myModal.show();
+        }
+        
+    </script>
+</body>
+</html>
