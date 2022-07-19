@@ -45,7 +45,7 @@
         $('#container').append("<div id='TravelData'></div>")
         getTravelData();
         function getTravelData() {
-            $('#TravelData').empty();
+            document.querySelector('#TravelData').empty();
             $.ajax({
                 type: 'get',
                 url: `https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvAttractions.aspx?$filter=City+like+${$('#txtCity').val()}`,

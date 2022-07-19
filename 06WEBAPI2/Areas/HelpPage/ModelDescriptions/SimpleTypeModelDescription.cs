@@ -1,0 +1,6 @@
+namespace _06WEBAPI2.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}
