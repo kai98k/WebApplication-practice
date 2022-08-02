@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b1a8a80a25f3447b8c83d6e9703366f4" Name="Diagram1">
+        <EntityTypeShape EntityType="教務系統Model.ProductType" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.sysdiagrams" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.主管" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.客戶" Width="1.5" PointX="7.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.訂單明細" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.訂單資料表" Width="1.5" PointX="5.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.員工" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.班級" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.教授" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.產品資料表" Width="1.5" PointX="5.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.新客戶" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.課程" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.課程2" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.學生" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.客戶業績" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="教務系統Model.View_1" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="教務系統Model.FK__客戶業績__客戶編號__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="教務系統Model.FK__訂單明細__訂單代號__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="教務系統Model.FK__訂單明細__產品編號__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="教務系統Model.FK__教授__身份證字號__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="教務系統Model.FK__班級__教授編號__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="教務系統Model.FK__班級__課程編號__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="教務系統Model.FK__班級__學號__2C3393D0" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

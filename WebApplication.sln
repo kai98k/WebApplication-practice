@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06WEBAPI2", "06WEBAPI2\06WE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormApp", "WinFormApp\WinFormApp.csproj", "{B466E5E7-1F2B-4908-B2E4-D9ACF02FC856}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07ADOnet", "07ADOnet\07ADOnet.csproj", "{5482D0C3-A8EA-4A6A-9011-D57E865F2615}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{B466E5E7-1F2B-4908-B2E4-D9ACF02FC856}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B466E5E7-1F2B-4908-B2E4-D9ACF02FC856}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B466E5E7-1F2B-4908-B2E4-D9ACF02FC856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5482D0C3-A8EA-4A6A-9011-D57E865F2615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5482D0C3-A8EA-4A6A-9011-D57E865F2615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5482D0C3-A8EA-4A6A-9011-D57E865F2615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5482D0C3-A8EA-4A6A-9011-D57E865F2615}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
