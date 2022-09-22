@@ -28,6 +28,8 @@ namespace _05CustomValidator.Models
 
             public override bool IsValid(object value)
             {
+
+                
                 int sum = 0;
                 string id = value.ToString(); //A123456789
 

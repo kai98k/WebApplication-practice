@@ -126,6 +126,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -159,6 +160,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>school.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SetData.cs" />
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>school.tt</DependentUpon>
     </Compile>
